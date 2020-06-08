@@ -1,0 +1,18 @@
+server:
+  port: 8888 # 配置认证服务端口号
+
+spring:
+  application:
+    name: @pom.artifactId@ # 配置认证服务id
+  datasource: # 配置数据库信息
+    url: jdbc:oracle:thin:@192.168.1.109:1521:orcl
+    username: test
+    password: test123456
+    driver-class-name: oracle.jdbc.OracleDriver
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/ # 配置注册中心地址
+    register-with-eureka: true # 向注册中心注册自己
+    fetch-registry: false # 关闭发现注册服务

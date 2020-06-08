@@ -16,6 +16,7 @@
     </parent>
 
     <modules>
+        <module>distributed-security-final</module>
         <module>distributed-security-order</module>
         <module>distributed-security-order-jwt</module>
         <module>distributed-security-uaa</module>

@@ -1,0 +1,17 @@
+server:
+  port: 8761 # 配置注册中心端口号
+
+eureka:
+  instance:
+    hostname: localhost # 提供服务的域名，本地可以使用localhost或者配置hosts测试
+  client:
+    register-with-eureka: false # 关闭向注册中心注册自己
+    fetch-registry: false # 关闭发现注册服务，注册中心仅用于维护节点
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka # 配置注册中心提供服务集群地址
+
+spring:
+  security:
+    user:
+      password: root # 配置注册中心密码
+      name: root # 配置注册中心账号

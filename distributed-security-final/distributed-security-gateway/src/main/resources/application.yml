@@ -1,0 +1,22 @@
+server:
+  port: 8080 # 网关端口号
+
+spring:
+  application:
+    name: @pom.artifactId@
+
+eureka:
+  client:
+    register-with-eureka: true # 向注册中心注册网关
+    fetch-registry: true # 开启服务发现
+    service-url:
+      default-zone: http://root:root@:localhost:8761/eureka # 配置注册中心提供服务集群地址
+
+zuul:
+  routes:
+    distributed-security-order-final:
+      path: /order/**
+    distributed-security-uaa-final:
+      path: /uaa/**
+  add-host-header: true # 设置添加host头信息，防止页面重定向到其他host
+  sensitive-headers: # 设置需要过滤掉的客户端附带的headers，这里什么都不过滤
