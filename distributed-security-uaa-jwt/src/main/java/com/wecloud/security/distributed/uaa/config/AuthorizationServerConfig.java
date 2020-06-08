@@ -21,10 +21,7 @@ import javax.annotation.Resource;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServer implements AuthorizationServerConfigurer {
-
-    @Resource
-    private TokenStore tokenStore;
+public class AuthorizationServerConfig implements AuthorizationServerConfigurer {
 
     @Resource
     private AuthenticationManager authenticationManager;
@@ -34,23 +31,6 @@ public class AuthorizationServer implements AuthorizationServerConfigurer {
 
     @Resource
     public AuthorizationServerTokenServices authorizationServerTokenServices;
-
-    // 令牌存储策略
-    @Bean
-    public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
-    }
-
-    // 授权令牌服务
-    @Bean
-    public AuthorizationServerTokenServices authorizationServerTokenServices(){
-        DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setSupportRefreshToken(true); // 是否可刷新令牌
-        tokenServices.setTokenStore(tokenStore); // 设置令牌存储策略
-        tokenServices.setAccessTokenValiditySeconds(2 * 60 * 60); // 令牌默认有效期2小时
-        tokenServices.setRefreshTokenValiditySeconds(24 * 60 * 60); // 刷新令牌默认有效期3天 return service;
-        return tokenServices;
-    }
 
     // 授权码服务
     @Bean
